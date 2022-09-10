@@ -1,6 +1,6 @@
 ﻿namespace KP.Core.Data
 {
-    internal interface IRepository<T> where T : BaseEntity
+    public interface IRepository<T> where T : BaseEntity
     {
         IDbContext DbContext { get; }
         T GetById(object id);

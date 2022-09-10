@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using KP.Core.Data;
 
 namespace KP.Core.DomainModels
 {
-    public partial class Stock
+    public partial class Stock : BaseEntity
     {
         public Guid StockId { get; set; }
         public Guid ProductId { get; set; }

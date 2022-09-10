@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KP.Core.Exceptions
 {
-    internal class ItemCannotBeInsertedException : KFApplicationException
+    internal class ItemCannotBeInsertedException : KPApplicationException
     {
         public ItemCannotBeInsertedException(string message) : base(message)
         {

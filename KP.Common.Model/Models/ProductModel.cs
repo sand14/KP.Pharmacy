@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KP.Core.DomainModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,8 @@ namespace KP.Common.Model.Models
         public string? Description { get; set; }
         public float Price { get; set; }
         public string? Producer { get; set; }
+
+        public virtual StockModel? Stock { get; set; }
+
     }
 }

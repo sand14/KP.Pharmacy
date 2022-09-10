@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KP.Core.Exceptions
 {
-    public class ItemCannotBeDeletedException : KFApplicationException
+    public class ItemCannotBeDeletedException : KPApplicationException
     {
         public ItemCannotBeDeletedException(string message) : base(message)
         {

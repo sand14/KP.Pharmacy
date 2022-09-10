@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 namespace KP.Core.Exceptions
 {
     [Serializable]
-    public class KFApplicationException : Exception
+    public class KPApplicationException : Exception
     {
-        public KFApplicationException() : base()
+        public KPApplicationException() : base()
         {
 
         }
 
-        public KFApplicationException(string message) : base(message)
+        public KPApplicationException(string message) : base(message)
         {
         }
 
-        public KFApplicationException(string message, Exception innerException) : base(message, innerException)
+        public KPApplicationException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
-        protected KFApplicationException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected KPApplicationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace KP.Core.Exceptions
 {
     [Serializable]
-    public class ItemCannotBeUpdatedException : KFApplicationException
+    public class ItemCannotBeUpdatedException : KPApplicationException
     {
         public ItemCannotBeUpdatedException(string message) : base(message)
         {

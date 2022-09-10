@@ -43,23 +43,29 @@ namespace KP.Core.DomainModels
 
             modelBuilder.Entity<Stock>(entity =>
             {
+                entity.HasIndex(e => e.ProductId, "IX_Stocks")
+                    .IsUnique();
+
                 entity.Property(e => e.StockId).HasDefaultValueSql("(newid())");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany(p => p.Stocks)
-                    .HasForeignKey(d => d.ProductId)
+                    .WithOne(p => p.Stock)
+                    .HasForeignKey<Stock>(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Stocks_Products");
             });
 
             modelBuilder.Entity<User>(entity =>
             {
+                entity.HasIndex(e => e.Username, "UQ__Users__536C85E46E7EDF9D")
+                    .IsUnique();
+
                 entity.Property(e => e.UserId).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
+                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin").HasDefaultValue(0); ;
 
                 entity.Property(e => e.Password)
-                    .HasMaxLength(50)
+                    .HasMaxLength(255)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Username)

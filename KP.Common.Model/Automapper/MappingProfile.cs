@@ -14,14 +14,17 @@ namespace KP.Common.Model.Automapper
         public MappingProfile()
         {
             CreateMap<Product, ProductModel>();
-                
-            CreateMap<ProductModel, Product>();
 
-            CreateMap<ProductModel, Stock>();
+            CreateMap<ProductModel, Product>()
+                .ForMember(x => x.Stock, x => x.Ignore());
 
-            CreateMap<UserModel, User>();
+            CreateMap<StockModel, Stock>();
+            CreateMap<Stock, StockModel>()
+                .ForMember(x=>x.Product, x=>x.Ignore());
 
             CreateMap<User, UserModel>();
+            CreateMap<UserModel, User>();
+
 
         }
 
