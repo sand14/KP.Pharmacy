@@ -65,11 +65,16 @@ namespace KP.Tests
 
                 //assert
                 Assert.That(createdUser != null);
+                Assert.That(service.PasswordVerify("username1", "password1"));
                 
             }
             catch (Exception)
             {
                 throw;
+            }
+            finally
+            {
+                //service.DeleteUser(createdUserId);
             }
 
         }

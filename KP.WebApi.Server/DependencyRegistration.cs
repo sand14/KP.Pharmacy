@@ -1,5 +1,6 @@
 ﻿using KP.Core.Data;
 using KP.Services.Product;
+using KP.Services.User;
 
 namespace KP.Web.Api
 {
@@ -19,6 +20,7 @@ namespace KP.Web.Api
 
             builder.AddTransient(typeof(IRepository<>), typeof(EFCoreRepository<>));
             builder.AddTransient<IProductService, ProductService>();
+            builder.AddTransient<IUserService, UserService>();
         }
     }
 }

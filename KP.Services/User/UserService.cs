@@ -32,12 +32,15 @@ namespace KP.Services.User
 
         public void DeleteUser(Guid UserId)
         {
-            throw new NotImplementedException();
+            var databaseEntity = userRepository.Table.FirstOrDefault(x => x.UserId == UserId);
+            if (databaseEntity == null) return;
+            userRepository.Delete(databaseEntity);
         }
 
         public UserModel GetUserById(Guid UserId)
         {
-            throw new NotImplementedException();
+            var user = userRepository.Table.FirstOrDefault(x => x.UserId == UserId);
+            return user.ToModel();
         }
 
         public IEnumerable<UserModel> GetUsers()

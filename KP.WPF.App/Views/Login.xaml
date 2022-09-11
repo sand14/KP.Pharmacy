@@ -1,0 +1,87 @@
+﻿<Window x:Class="KP.WPF.App.Views.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent"
+        Title="Login" Height="500" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border CornerRadius="10 0 0 10">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#21428f" Offset="0"/>
+                    <GradientStop Color="#62b1e4" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Canvas>
+                    <Polygon Points="0,20,230,140,0,270" Fill="#3b9dde"/>
+                    <Polygon Points="100,400,200,370,180,470" Fill="#3b9dde"/>
+                    <Ellipse Margin="250 450 0 0" Width="40" Height="40" Fill="#3b9dde" />
+                    <Ellipse Margin="50 400 0 0" Width="20" Height="20" Fill="#3b9dde" />
+                </Canvas>
+
+                <StackPanel>
+                    <Image Margin="30,82,20,20" Source="/Assets/kronsoft-logo-white.png"/>
+                    <TextBlock Margin="10,10" Text="Enter your account information to access the application" FontSize="16" LineHeight="28" TextWrapping="Wrap" TextAlignment="Center" Foreground="#ffffff"/>
+                </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0">
+            <StackPanel>
+                <TextBlock Text="Sign in to App" Foreground="#3b9dde" FontSize="36" FontWeight="Bold" TextAlignment="Center" Margin="0,30,0,0"/>
+                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 60 70 0" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Assets/icons8-user-50.png" Height="20"/>
+                        <TextBlock x:Name="textUsername" MouseDown="textUsername_MouseDown" Text=" Username" FontSize="14" Grid.Column="1" Panel.ZIndex="1" Margin="10 0 0 0" Foreground="#acb0af"/>
+                        <TextBox x:Name="txtUsername" FontSize="14" Grid.Column="1" Margin="10 0 0 0" Foreground="#878787" BorderBrush="Transparent" BorderThickness="0" TextChanged="txtUsername_TextChanged"/>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="#acb0af" Margin="70 20" CornerRadius="5">
+                    <Grid Margin="7 9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="/Assets/icons8-lock-50.png" Height="20"/>
+                        <TextBlock x:Name="textPassword" MouseDown="textPassword_MouseDown" Text=" Password" FontSize="14" Grid.Column="1" Panel.ZIndex="1" Margin="10 0 0 0" Foreground="#acb0af"/>
+                        <PasswordBox x:Name="txtPassword" FontSize="14" Grid.Column="1" Margin="10 0 0 0" Foreground="#878787" BorderBrush="Transparent" BorderThickness="0" PasswordChanged="txtPassword_PasswordChanged"/>
+                    </Grid>
+                </Border>
+
+                <Button Content="Sign In" FontSize="14" Width="170" Background="#3b9dde" Foreground="#FDFEFE" FocusVisualStyle="{x:Null}">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                            <Setter Property="Padding" Value="10"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Background" Value="black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+        </Border>
+        
+    </Grid>
+
+   
+</Window>

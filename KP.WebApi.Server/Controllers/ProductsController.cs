@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using KP.Common.Model.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KP.Web.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ProductsController : Controller
     {
@@ -20,7 +22,6 @@ namespace KP.Web.Api.Controllers
             try
             {
                 var products = productService.GetProducts();
-
                 return products;
             }
             catch (Exception ex)

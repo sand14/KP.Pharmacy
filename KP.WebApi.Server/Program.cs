@@ -4,6 +4,7 @@ using KP.Web.Api;
 
 using Microsoft.EntityFrameworkCore;
 using KP.Core.Data;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = new ConfigurationBuilder()
@@ -25,6 +26,9 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession();
 
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen(c =>
@@ -44,6 +48,9 @@ if (builder.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+
+app.UseAuthorization();
 
 app.MapControllers();
 

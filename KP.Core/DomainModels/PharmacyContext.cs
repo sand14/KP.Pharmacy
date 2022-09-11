@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using KP.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace KP.Core.DomainModels
 {
-    public partial class PharmacyContext : DbContext
+    public partial class PharmacyContext : DbContext, IDbContext
     {
         public PharmacyContext()
         {
@@ -62,7 +63,7 @@ namespace KP.Core.DomainModels
 
                 entity.Property(e => e.UserId).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin").HasDefaultValue(0); ;
+                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
 
                 entity.Property(e => e.Password)
                     .HasMaxLength(255)
@@ -74,8 +75,23 @@ namespace KP.Core.DomainModels
             });
 
             OnModelCreatingPartial(modelBuilder);
+
+
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        #region Methods
+        public virtual new DbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity
+        {
+            return base.Set<TEntity>();
+        }
+
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
+
+        #endregion
     }
 }
