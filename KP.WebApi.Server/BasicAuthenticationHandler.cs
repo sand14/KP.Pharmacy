@@ -61,7 +61,6 @@ namespace KP.Web.Api
             {
                 return AuthenticateResult.Fail("UnAuthorized");
             }
-
         }
     }
 }

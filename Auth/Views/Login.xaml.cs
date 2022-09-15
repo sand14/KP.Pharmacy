@@ -1,18 +1,22 @@
-﻿using System.Windows;
+﻿using Prism.Mvvm;
+using Prism.Regions;
+using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace KP.WPF.App.Views
+namespace Auth.Views
 {
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class Login : UserControl
     {
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
+
 
         private void textUsername_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -21,14 +25,16 @@ namespace KP.WPF.App.Views
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
+            if (!string.IsNullOrEmpty(txtUsername.Text) && txtUsername.Text.Length > 0)
             {
                 textUsername.Visibility = Visibility.Collapsed;
+                LoginFailed.Visibility = Visibility.Collapsed;
             }
             else
             {
                 textUsername.Visibility = Visibility.Visible;
             }
+            
         }
 
 
@@ -43,11 +49,18 @@ namespace KP.WPF.App.Views
             if (!string.IsNullOrEmpty(txtPassword.Password) && txtPassword.Password.Length > 0)
             {
                 textPassword.Visibility = Visibility.Collapsed;
+                LoginFailed.Visibility = Visibility.Collapsed;
             }
             else
             {
                 textPassword.Visibility = Visibility.Visible;
             }
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
+
         }
+
+        
+
     }
 }

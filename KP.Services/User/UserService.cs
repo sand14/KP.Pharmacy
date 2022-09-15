@@ -56,7 +56,8 @@ namespace KP.Services.User
 
         public UserModel GetUserByUsername(string Name)
         {
-            throw new NotImplementedException();
+            var user = userRepository.Table.FirstOrDefault(x => x.Username == Name);
+            return user.ToModel();
         }
 
         public string PasswordHashing(string password)

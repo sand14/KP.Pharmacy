@@ -1,10 +1,13 @@
 ﻿using KP.Common.Model.Models;
 using KP.Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace KP.Web.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -14,11 +17,32 @@ namespace KP.Web.Api.Controllers
             this.userService = userService;
         }
 
-        [Route("/api/Login/{basictoken}")]
-        [HttpGet]
-        public bool Login( )
+        [AllowAnonymous]
+        [Route("/api/Login")]
+        [HttpPost]
+        public bool Login([FromBody]string base64String)
         {
-            return false;
+            var bytes = Convert.FromBase64String(base64String);
+            string credentials = Encoding.UTF8.GetString(bytes);
+            if (!string.IsNullOrEmpty(credentials))
+            {
+                string[] array = credentials.Split(":");
+                string username = array[0];
+                string password = array[1];
+
+                var user = userService.GetUserByUsername(username);
+                if (user == null)
+                {
+                    return false;
+                }
+
+
+                if (!userService.PasswordVerify(user.Username, password))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         [Route("/api/Users")]
@@ -37,13 +61,29 @@ namespace KP.Web.Api.Controllers
             }
         }
 
-        [Route("/api/Users/{UserId}")]
+        //[Route("/api/Users/{UserId}")]
+        //[HttpGet]
+        //public UserModel GetUserById(Guid userId)
+        //{
+        //    try
+        //    {
+        //        var user = userService.GetUserById(userId);
+
+        //        return user;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message.ToString());
+        //    }
+        //}
+
+        [Route("/api/Users/{username}")]
         [HttpGet]
-        public UserModel GetUserById(Guid userId)
+        public UserModel GetUserByUsername(string username)
         {
             try
             {
-                var user = userService.GetUserById(userId);
+                var user = userService.GetUserByUsername(username);
 
                 return user;
             }

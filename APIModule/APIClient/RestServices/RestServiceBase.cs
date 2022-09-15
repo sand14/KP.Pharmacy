@@ -22,7 +22,7 @@ namespace KP.WPF.App.APIClient.RestServices
             ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
         }
 
-        protected virtual HttpClient GetClient()
+        public HttpClient GetClient()
         {
             return httpClientFactory.GetHttpClient();
         }
@@ -42,15 +42,15 @@ namespace KP.WPF.App.APIClient.RestServices
             return JsonConvertWrapper.SerializeObject(value);
         }
 
-        //protected async Task<HttpRequestMessage> PrepareRequestMessageAsync(HttpMethod method, string requestUri)
-        //{
-        //    var request = new HttpRequestMessage(method, requestUri.Replace(@"//api/", @"/api/"));
-        //    var username = "username";
-        //    var password = "password";
-        //    var encoded = Convert.ToBase64String(Encoding.GetEncoding(0).GetBytes($"{username}:{password}"));
-        //    request.Headers.Add("Authorization", $"basic {encoded}");
-        //    return request;
-        //}
+  
+
+        protected async Task<HttpRequestMessage> PrepareRequestMessageAsync(HttpMethod method, string requestUri)
+        {
+            var request = new HttpRequestMessage(method, requestUri.Replace(@"//api/", @"/api/"));
+            //var encoded = Convert.ToBase64String(Encoding.GetEncoding(0).GetBytes($"{username}:{password}"));
+            //request.Headers.Add("Authorization", $"basic {encoded}");
+            return request;
+        }
 
         protected HttpRequestMessage PrepareRequestMessageNoAuth(HttpMethod method, string requestUri)
         {
