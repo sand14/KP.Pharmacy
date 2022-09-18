@@ -20,12 +20,14 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
     <PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\APIModule\APIModule.csproj" />
+    <ProjectReference Include="..\APIModule\KP.WPF.APIModule.csproj" />
+    <ProjectReference Include="..\KP.WPF.HomeModule\KP.WPF.HomeModule.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Login.xaml">

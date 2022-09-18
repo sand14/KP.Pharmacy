@@ -6,6 +6,10 @@ using KP.WPF.App.APIClient;
 using KP.WPF.App.APIClient.RestServices;
 using KP.WPF.App.ViewModels;
 using KP.WPF.App.Views;
+using KP.WPF.HomeModule;
+using KP.WPF.HomeModule.ViewModels;
+using KP.WPF.HomeModule.Views;
+using KP.WPF.Products;
 using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -25,14 +29,18 @@ namespace KP.WPF.App
     {
         protected override Window CreateShell()
         {
+
             return Container.Resolve<MainWindow>();
 
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            
             containerRegistry.RegisterForNavigation<Login,LoginViewModel>();
             //containerRegistry.Register<UserRestService>();
+            containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
+            
             containerRegistry.Register<IHttpClientFactory,HttpClientFactory>();
             containerRegistry.Register<IClientApplicationConfiguration,ApplicationConfiguration>();
             
@@ -42,8 +50,12 @@ namespace KP.WPF.App
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
+            
             moduleCatalog.AddModule<AuthModule>();
+            moduleCatalog.AddModule(typeof(HomeModuleModule), InitializationMode.OnDemand);
             moduleCatalog.AddModule<APIModuleModule>();
+            moduleCatalog.AddModule<ProductsModule>();
+            
         }
     }
 }

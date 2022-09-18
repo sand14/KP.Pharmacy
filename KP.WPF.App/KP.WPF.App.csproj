@@ -25,7 +25,15 @@
     <PackageReference Include="Prism.Unity" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\APIModule\APIModule.csproj" />
-    <ProjectReference Include="..\Auth\Auth.csproj" />
+    <ProjectReference Include="..\APIModule\KP.WPF.APIModule.csproj" />
+    <ProjectReference Include="..\Auth\KP.WPF.Auth.csproj" />
+    <ProjectReference Include="..\KP.WPF.HomeModule\KP.WPF.HomeModule.csproj" />
+    <ProjectReference Include="..\KP.WPF.Products\KP.WPF.Products.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Theme\MenuButtonTheme.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>

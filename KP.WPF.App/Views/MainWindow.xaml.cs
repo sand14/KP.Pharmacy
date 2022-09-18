@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using Auth.Views;
+using KP.WPF.HomeModule.Views;
+using Prism.Ioc;
+using Prism.Regions;
+using System.Windows;
 
 namespace KP.WPF.App.Views
 {
@@ -7,9 +11,20 @@ namespace KP.WPF.App.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        IContainerExtension _container;
+        IRegionManager _regionManager;
+        public MainWindow(IContainerExtension container, IRegionManager regionManager)
         {
             InitializeComponent();
+            _container = container;
+            _regionManager = regionManager;
+            //_regionManager.RegisterViewWithRegion("HomeRegion", typeof(Home));
+            _regionManager.RegisterViewWithRegion("ContentRegion", typeof(Login));
+            
+            
+            //regionManager.RegisterViewWithRegion("ContentRegion", typeof(Home));
         }
+
+       
     }
 }

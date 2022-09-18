@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="KP.WPF.HomeModule.Views.Home"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:KP.WPF.HomeModule.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             xmlns:prism="http://prismlibrary.com/" xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
+             Height="700" Width="1000"
+             HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+             prism:ViewModelLocator.AutoWireViewModel="True" Background="Transparent" >
+    <Border CornerRadius="10 0 0 10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <Border Grid.RowSpan="2"  >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#21428f" Offset="0"/>
+                        <GradientStop Color="#62b1e4" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <TextBlock Text="Pharmacy" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontSize="22" Margin="20,0,0,0"/>
+
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Products" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="ProductsView"/>
+                <RadioButton Content="Users" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" IsEnabled="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <RadioButton Content="Statistics" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+            </StackPanel>
+            <ContentControl prism:RegionManager.RegionName="ViewRegion" Grid.Row="1" Grid.Column="1" Margin="10"/>
+        </Grid>
+    </Border>
+    
+</UserControl>

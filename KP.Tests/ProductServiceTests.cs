@@ -97,7 +97,7 @@ namespace KP.Tests
             }
             finally
             {
-                service.DeleteProduct(createdProductId);
+                //service.DeleteProduct(createdProductId);
             }
         }
 

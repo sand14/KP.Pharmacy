@@ -6,7 +6,9 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         prism:ViewModelLocator.AutoWireViewModel="true"
         xmlns:prism="http://prismlibrary.com/" xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
-        Height="500" Width="800">
+             HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+        Height="700" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
