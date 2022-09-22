@@ -1,12 +1,6 @@
 ﻿using KP.Common.Model.Automapper;
 using KP.Common.Model.Models;
 using KP.Core.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reactive.Joins;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KP.Services.User
 {
@@ -61,9 +55,9 @@ namespace KP.Services.User
                 User.Password = PasswordHashing(decodedpassword);
             }
 
-            
+
             userRepository.Update(User.ToEntity());
-            
+
             return GetUserById(User.UserId);
         }
 

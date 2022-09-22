@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using KP.Common.Model.Models;
 using KP.Core.DomainModels;
 
@@ -20,7 +15,7 @@ namespace KP.Common.Model.Automapper
 
             CreateMap<StockModel, Stock>();
             CreateMap<Stock, StockModel>()
-                .ForMember(x=>x.Product, x=>x.Ignore());
+                .ForMember(x => x.Product, x => x.Ignore());
 
             CreateMap<User, UserModel>();
             CreateMap<UserModel, User>();

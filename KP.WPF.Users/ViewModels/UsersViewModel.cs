@@ -3,13 +3,8 @@ using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.Xpf;
 using KP.WPF.App.APIClient.RestServices;
 using KP.WPF.Core.Models;
-using Prism.Commands;
-using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using DelegateCommand = Prism.Commands.DelegateCommand;
@@ -21,9 +16,9 @@ namespace KP.WPF.Users.ViewModels
 
         private readonly UserRestService userRestService;
 
-        
+
         public DelegateCommand DeleteUserCommand { get; private set; }
-        
+
 
         private ObservableCollection<UserModel> users;
         public ObservableCollection<UserModel> Users
@@ -56,7 +51,7 @@ namespace KP.WPF.Users.ViewModels
             await GetUsers();
         }
 
-        
+
 
         private async void DeleteUser()
         {
@@ -70,7 +65,7 @@ namespace KP.WPF.Users.ViewModels
 
             await GetUsers();
         }
-        
+
         [Command]
         public async void ValidateRow(RowValidationArgs args)
         {

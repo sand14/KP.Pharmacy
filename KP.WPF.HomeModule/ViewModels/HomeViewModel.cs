@@ -1,15 +1,8 @@
 ﻿using Auth;
-using KP.WPF.HomeModule.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KP.WPF.HomeModule.ViewModels
 {
@@ -55,16 +48,16 @@ namespace KP.WPF.HomeModule.ViewModels
             {
                 IsEnabled = true;
             }
-            if(message == "NonAdmin")
+            if (message == "NonAdmin")
             {
                 IsEnabled = false;
             }
-            if(message == "Logout")
+            if (message == "Logout")
             {
                 _regionManager.Regions["ViewRegion"].RemoveAll();
             }
         }
 
-        
+
     }
 }

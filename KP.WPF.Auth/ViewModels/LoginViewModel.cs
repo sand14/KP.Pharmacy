@@ -1,16 +1,15 @@
 ﻿using KP.WPF.App.APIClient.RestServices;
 using KP.WPF.Core.Models;
-using KP.WPF.HomeModule.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
-using System;
 using System.Windows;
+using Auth;
 
-namespace Auth.ViewModels
+namespace KP.WPF.Auth.ViewModels
 {
-    public partial class LoginViewModel : BindableBase
+    public class LoginViewModel : BindableBase
     {
 
         private readonly UserRestService userRestService;
@@ -80,7 +79,7 @@ namespace Auth.ViewModels
             if (success)
             {
                 UserModel user = await userRestService.GetUser(Username);
-                
+
                 if (user.IsAdmin)
                     ea.GetEvent<MessageSentEvent>().Publish("Admin");
                 else
@@ -89,7 +88,7 @@ namespace Auth.ViewModels
             else
                 MessageVisibilty = Visibility.Visible;
         }
-        
+
 
     }
 }

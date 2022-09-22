@@ -1,8 +1,6 @@
-﻿using KP.WPF.HomeModule.ViewModels;
-using KP.WPF.HomeModule.Views;
+﻿using KP.WPF.HomeModule.Views;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 
 namespace KP.WPF.HomeModule
 {

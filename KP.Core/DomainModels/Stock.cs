@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using KP.Core.Data;
+﻿using KP.Core.Data;
 
 namespace KP.Core.DomainModels
 {

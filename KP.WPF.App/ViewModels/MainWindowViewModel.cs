@@ -1,12 +1,7 @@
 ﻿using Auth;
-using Auth.Views;
-using CommonServiceLocator;
-using KP.WPF.HomeModule.Views;
-using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
-using System.Windows;
 
 namespace KP.WPF.App.ViewModels
 {
@@ -23,7 +18,7 @@ namespace KP.WPF.App.ViewModels
 
         public MainWindowViewModel(IEventAggregator ea, IRegionManager RegionManager)
         {
-            _regionManager=RegionManager;
+            _regionManager = RegionManager;
             this.ea = ea;
             ea.GetEvent<MessageSentEvent>().Subscribe(MessageReceived);
 
@@ -39,7 +34,7 @@ namespace KP.WPF.App.ViewModels
                 //LoginVisibility = Visibility.Hidden;
                 //HomeVisibility = Visibility.Visible;
             }
-            if(message == "Logout")
+            if (message == "Logout")
             {
                 _regionManager.RequestNavigate("ContentRegion", "Login");
             }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using KP.Core.Data;
+﻿using KP.Core.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace KP.Core.DomainModels
 {

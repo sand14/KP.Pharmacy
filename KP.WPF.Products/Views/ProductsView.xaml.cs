@@ -1,6 +1,4 @@
-﻿using DevExpress.Mvvm.DataAnnotations;
-using DevExpress.Mvvm.Xpf;
-using KP.WPF.Core.Models;
+﻿using KP.WPF.Core.Models;
 using System.Windows.Controls;
 
 namespace KP.WPF.Products.Views
@@ -20,9 +18,9 @@ namespace KP.WPF.Products.Views
             e.NewObject = new ProductModel()
             {
                 Stock = new StockModel(),
-                
+
             };
-            
+
         }
     }
 }

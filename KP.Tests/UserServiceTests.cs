@@ -5,11 +5,6 @@ using KP.Core.DomainModels;
 using KP.Services.User;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KP.Tests
 {
@@ -42,7 +37,7 @@ namespace KP.Tests
 
             //Set up Repos
             userRepository = new(_dbContext);
-           
+
 
             //Set up Automapper
             AutoMapperConfiguration.Init();
@@ -66,7 +61,7 @@ namespace KP.Tests
                 //assert
                 Assert.That(createdUser != null);
                 Assert.That(service.PasswordVerify("username1", "password1"));
-                
+
             }
             catch (Exception)
             {

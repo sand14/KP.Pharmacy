@@ -1,7 +1,5 @@
-﻿using KP.WPF.App.APIClient.RestServices;
-using Prism.Ioc;
+﻿using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 
 namespace APIModule
 {
@@ -14,7 +12,7 @@ namespace APIModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            
+
         }
     }
 }

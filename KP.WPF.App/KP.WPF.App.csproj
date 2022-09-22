@@ -26,7 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\APIModule\KP.WPF.APIModule.csproj" />
-    <ProjectReference Include="..\Auth\KP.WPF.Auth.csproj" />
+    <ProjectReference Include="..\KP.WPF.Auth\KP.WPF.Auth.csproj" />
     <ProjectReference Include="..\KP.WPF.HomeModule\KP.WPF.HomeModule.csproj" />
     <ProjectReference Include="..\KP.WPF.Products\KP.WPF.Products.csproj" />
     <ProjectReference Include="..\KP.WPF.Users\KP.WPF.Users.csproj" />

@@ -1,9 +1,4 @@
 ﻿using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KP.WPF.Core.Models
 {
@@ -26,13 +21,13 @@ namespace KP.WPF.Core.Models
         private float quantity;
         public float Quantity
         {
-            get { return quantity;  } 
+            get { return quantity; }
             set { SetProperty(ref quantity, value); }
         }
 
         private ProductModel product;
-        public ProductModel Product 
-        { 
+        public ProductModel Product
+        {
             get { return product; }
             set { SetProperty(ref product, value); }
         }

@@ -2,7 +2,6 @@
 using KP.WPF.Products.Views;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Regions;
 
 namespace KP.WPF.Products
 {

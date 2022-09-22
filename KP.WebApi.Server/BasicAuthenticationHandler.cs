@@ -46,7 +46,7 @@ namespace KP.Web.Api
                 }
 
                 UserService service = GetService();
-                if (!service.PasswordVerify(user.Username,password))
+                if (!service.PasswordVerify(user.Username, password))
                 {
                     return AuthenticateResult.Fail("UnAuthorized");
                 }

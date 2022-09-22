@@ -1,10 +1,10 @@
 ﻿using Prism.Events;
-using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Auth;
 
-namespace Auth.Views
+namespace KP.WPF.Auth.Views
 {
     /// <summary>
     /// Interaction logic for Login.xaml

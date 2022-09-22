@@ -107,7 +107,7 @@ namespace KP.Tests
             //arrange
             ProductService service = GetService();
             ProductModel product = CreateProductModel("TestName", "TestDescription", 15, "Producertest").ToModel();
-            ProductModel createdProduct= service.CreateProduct(product);
+            ProductModel createdProduct = service.CreateProduct(product);
 
             //act
             service.DeleteProduct(createdProduct.ProductId);

@@ -4,7 +4,6 @@ using KP.WPF.Core.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,9 +30,9 @@ namespace KP.WPF.APIModule.APIClient.RestServices
 
         public async Task<ProductModel> CreateProductAsync(ProductModel product)
         {
-            
+
             var data = new StringContent(JsonConvert.SerializeObject(product), Encoding.UTF8, "application/json");
-            var response = await client.PostAsync($"{serverAddress}/api/Products",data);
+            var response = await client.PostAsync($"{serverAddress}/api/Products", data);
             var payload = DeserializeObject<ProductModel>(await response.Content.ReadAsStringAsync());
             return payload;
         }
@@ -56,5 +55,5 @@ namespace KP.WPF.APIModule.APIClient.RestServices
         }
     }
 
-    
+
 }

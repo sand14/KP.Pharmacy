@@ -4,7 +4,6 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -27,9 +26,9 @@ namespace KP.WPF.App.APIClient.RestServices
             return client;
         }
 
- 
 
-        
+
+
 
         public T DeserializeObject<T>(string jsonstring)
         {
@@ -46,7 +45,7 @@ namespace KP.WPF.App.APIClient.RestServices
             return JsonConvertWrapper.SerializeObject(value);
         }
 
-  
+
 
         protected async Task<HttpRequestMessage> PrepareRequestMessageAsync(HttpMethod method, string requestUri)
         {

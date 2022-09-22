@@ -1,7 +1,6 @@
 ﻿using KP.Common.Model.Models;
 using KP.Services.User;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
@@ -20,7 +19,7 @@ namespace KP.Web.Api.Controllers
         [AllowAnonymous]
         [Route("/api/Login")]
         [HttpPost]
-        public bool Login([FromBody]string base64String)
+        public bool Login([FromBody] string base64String)
         {
             var bytes = Convert.FromBase64String(base64String);
             string credentials = Encoding.UTF8.GetString(bytes);

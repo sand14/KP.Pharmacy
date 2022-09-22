@@ -1,8 +1,7 @@
-﻿using KP.Services.Product;
-using Microsoft.AspNetCore.Mvc;
-using KP.Common.Model.Models;
-using System.Text.Json;
+﻿using KP.Common.Model.Models;
+using KP.Services.Product;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KP.Web.Api.Controllers
 {

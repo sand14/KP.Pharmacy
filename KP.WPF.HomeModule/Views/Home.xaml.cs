@@ -1,5 +1,4 @@
-﻿using KP.WPF.HomeModule.ViewModels;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace KP.WPF.HomeModule.Views
 {
@@ -13,6 +12,6 @@ namespace KP.WPF.HomeModule.Views
             InitializeComponent();
         }
 
-        
+
     }
 }

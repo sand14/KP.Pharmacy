@@ -1,9 +1,4 @@
-﻿using System;
-using AutoMapper;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 
 namespace KP.Common.Model.Automapper
 {
@@ -16,7 +11,7 @@ namespace KP.Common.Model.Automapper
 
         #region Init
         public static void Init()
-        { 
+        {
             mapperConfiguration = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
 
             if (mapperConfiguration == null)

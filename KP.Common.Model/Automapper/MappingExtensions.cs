@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using KP.Common.Model.Models;
 using KP.Core.DomainModels;
 
@@ -16,7 +11,7 @@ namespace KP.Common.Model.Automapper
 
         public static ProductModel ToModel(this Product entity)
         {
-            return mapper.Map<ProductModel> (entity);
+            return mapper.Map<ProductModel>(entity);
         }
         public static Product ToEntity(this ProductModel model)
         {

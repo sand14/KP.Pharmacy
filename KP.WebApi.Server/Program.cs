@@ -1,10 +1,8 @@
+using KP.Core.Data;
 using KP.Core.DomainModels;
 using KP.Web.Api;
-
-
-using Microsoft.EntityFrameworkCore;
-using KP.Core.Data;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = new ConfigurationBuilder()
@@ -18,7 +16,7 @@ builder.Services.AddDbContext<PharmacyContext>(options =>
     options.UseSqlServer(
         config.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDbContext <IDbContext, PharmacyContext>();
+builder.Services.AddDbContext<IDbContext, PharmacyContext>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
