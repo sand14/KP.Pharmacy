@@ -123,5 +123,20 @@ namespace KP.Web.Api.Controllers
                 throw new Exception(ex.Message.ToString());
             }
         }
+
+        [Route("/api/Users/{userId}")]
+        [HttpPut]
+        public UserModel UpdateUser(Guid userId, [FromBody] UserModel user)
+        {
+            try
+            {
+                UserModel updateUser = userService.UpdateUser(user);
+                return updateUser;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }

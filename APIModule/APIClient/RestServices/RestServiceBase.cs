@@ -13,7 +13,7 @@ namespace KP.WPF.App.APIClient.RestServices
     public class RestServiceBase
     {
         protected string serverAddress;
-        private readonly IHttpClientFactory httpClientFactory;
+        static HttpClient client = new HttpClient();
         private const string contentType = "application/json";
 
         static RestServiceBase()
@@ -24,8 +24,12 @@ namespace KP.WPF.App.APIClient.RestServices
 
         public HttpClient GetClient()
         {
-            return httpClientFactory.GetHttpClient();
+            return client;
         }
+
+ 
+
+        
 
         public T DeserializeObject<T>(string jsonstring)
         {
@@ -58,18 +62,13 @@ namespace KP.WPF.App.APIClient.RestServices
             return request;
         }
 
-        public RestServiceBase(IHttpClientFactory httpClientFactory, IClientApplicationConfiguration configuration)
-
+        public RestServiceBase(IClientApplicationConfiguration configuration)
         {
             if (configuration == null)
                 throw new ArgumentNullException(nameof(configuration));
 
 
             this.serverAddress = configuration.ServerAddress;
-
-            if (httpClientFactory == null)
-                throw new ArgumentNullException("httpClientFactory");
-            this.httpClientFactory = httpClientFactory;
 
         }
 

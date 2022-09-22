@@ -1,10 +1,12 @@
 ﻿using Auth;
+using KP.WPF.HomeModule.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +17,25 @@ namespace KP.WPF.HomeModule.ViewModels
     {
         private readonly IRegionManager _regionManager;
 
-        IEventAggregator ea;
+        IEventAggregator _ea;
 
-        bool isEnabled;
+        private bool isEnabled;
+        public bool IsEnabled
+        {
+            get => isEnabled;
+            set => SetProperty(ref isEnabled, value);
+        }
 
         public DelegateCommand<string> NavigateCommand { get; private set; }
+        public DelegateCommand LogoutCommand { get; private set; }
 
         public HomeViewModel(IRegionManager regionManager, IEventAggregator ea)
         {
             _regionManager = regionManager;
             NavigateCommand = new DelegateCommand<string>(Navigate);
-            this.ea = ea;
-            ea.GetEvent<MessageSentEvent>().Subscribe(MessageReceived);
+            LogoutCommand = new DelegateCommand(Logout);
+            _ea = ea;
+            _ea.GetEvent<MessageSentEvent>().Subscribe(MessageReceived);
         }
 
         private void Navigate(string navigatePath)
@@ -35,19 +44,27 @@ namespace KP.WPF.HomeModule.ViewModels
                 _regionManager.RequestNavigate("ViewRegion", navigatePath);
         }
 
+        public void Logout()
+        {
+            _ea.GetEvent<MessageSentEvent>().Publish("Logout");
+        }
+
         private void MessageReceived(string message)
         {
             if (message == "Admin")
             {
                 IsEnabled = true;
-                
+            }
+            if(message == "NonAdmin")
+            {
+                IsEnabled = false;
+            }
+            if(message == "Logout")
+            {
+                _regionManager.Regions["ViewRegion"].RemoveAll();
             }
         }
 
-        public bool IsEnabled
-        {
-            get { return isEnabled; }
-            set { SetProperty(ref isEnabled, value); }
-        }
+        
     }
 }

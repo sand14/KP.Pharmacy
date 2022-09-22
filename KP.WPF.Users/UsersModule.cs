@@ -1,12 +1,12 @@
-﻿using KP.WPF.HomeModule.ViewModels;
-using KP.WPF.HomeModule.Views;
+﻿using KP.WPF.Users.ViewModels;
+using KP.WPF.Users.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
 
-namespace KP.WPF.HomeModule
+namespace KP.WPF.Users
 {
-    public class HomeModuleModule : IModule
+    public class UsersModule : IModule
     {
         public void OnInitialized(IContainerProvider containerProvider)
         {
@@ -15,8 +15,7 @@ namespace KP.WPF.HomeModule
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<Home>("Home");
-
+            containerRegistry.RegisterForNavigation<UsersView,UsersViewModel>("UsersView");
         }
     }
 }

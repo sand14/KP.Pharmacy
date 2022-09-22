@@ -24,7 +24,7 @@ namespace KP.WPF.Core.Models
         }
 
         private string description;
-        public string Description 
+        public string Description
         {
             get { return description; }
             set { SetProperty(ref description, value); }
@@ -48,8 +48,10 @@ namespace KP.WPF.Core.Models
         public StockModel Stock
         {
             get { return stock; }
-            set { SetProperty(ref stock, value); }
+            set 
+            { 
+                SetProperty(ref stock, value); 
+            }
         }
-
     }
 }

@@ -17,6 +17,7 @@ using Prism.Mvvm;
 using Prism.Regions;
 using Prism.Unity;
 using System.Windows;
+using KP.WPF.Users;
 using Unity.Lifetime;
 
 namespace KP.WPF.App
@@ -37,12 +38,13 @@ namespace KP.WPF.App
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             
-            containerRegistry.RegisterForNavigation<Login,LoginViewModel>();
-            //containerRegistry.Register<UserRestService>();
-            containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
-            
-            containerRegistry.Register<IHttpClientFactory,HttpClientFactory>();
+            //containerRegistry.RegisterForNavigation<Login,LoginViewModel>();
+            ////containerRegistry.Register<UserRestService>();
+            //containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.Register<IClientApplicationConfiguration,ApplicationConfiguration>();
+            containerRegistry.RegisterForNavigation<Login>("Login");
+            containerRegistry.RegisterForNavigation<Home>("Home");
+
             
         }
 
@@ -55,6 +57,17 @@ namespace KP.WPF.App
             moduleCatalog.AddModule(typeof(HomeModuleModule), InitializationMode.OnDemand);
             moduleCatalog.AddModule<APIModuleModule>();
             moduleCatalog.AddModule<ProductsModule>();
+            moduleCatalog.AddModule<UsersModule>();
+            
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            var regionManager = Container.Resolve<IRegionManager>();
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Login));
+            regionManager.RegisterViewWithRegion("ContentRegion", typeof(Home));
             
         }
     }

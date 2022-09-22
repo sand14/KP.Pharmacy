@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.Xpf;
+using KP.WPF.Core.Models;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace KP.WPF.Products.Views
 {
@@ -23,6 +13,16 @@ namespace KP.WPF.Products.Views
         public ProductsView()
         {
             InitializeComponent();
+        }
+
+        private void TableView_AddingNewRow(object sender, System.ComponentModel.AddingNewEventArgs e)
+        {
+            e.NewObject = new ProductModel()
+            {
+                Stock = new StockModel(),
+                
+            };
+            
         }
     }
 }

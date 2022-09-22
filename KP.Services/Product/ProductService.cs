@@ -41,10 +41,10 @@ namespace KP.Services.Product
             if (databaseEntity == null) return;
             var stockEntity = stockRepository.Table.FirstOrDefault(s => s.ProductId == ProductId);
 
-            if(stockEntity != null)
-            stockRepository.Delete(stockEntity);
+            if (stockEntity != null)
+                stockRepository.Delete(stockEntity);
             productRepository.Delete(databaseEntity);
-            
+
         }
 
         public ProductModel GetProductByName(string Name)
@@ -73,11 +73,11 @@ namespace KP.Services.Product
         public ProductModel UpdateProduct(ProductModel Product)
         {
             if (Product == null) return null;
-            var databaseEntity = productRepository.TableNoTracking.Include(p=>p.Stock).FirstOrDefault(s => s.ProductId == Product.ProductId);
+            var databaseEntity = productRepository.TableNoTracking.Include(p => p.Stock).FirstOrDefault(s => s.ProductId == Product.ProductId);
             if (databaseEntity == null) return null;
 
             productRepository.Update(Product.ToEntity());
-            if(Product.Stock.Quantity != databaseEntity.Stock.Quantity)
+            if (Product.Stock.Quantity != databaseEntity.Stock.Quantity)
             {
                 stockRepository.Update(Product.Stock.ToEntity());
             }

@@ -21,8 +21,9 @@ namespace Auth
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<Login>("Login");
-            
-            
+            containerRegistry.Register<LoginViewModel>();
+
+
         }
 
         

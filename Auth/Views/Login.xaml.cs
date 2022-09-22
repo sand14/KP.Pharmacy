@@ -1,5 +1,4 @@
-﻿using Prism.Mvvm;
-using Prism.Regions;
+﻿using Prism.Events;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,11 +11,21 @@ namespace Auth.Views
     /// </summary>
     public partial class Login : UserControl
     {
-        public Login()
+        IEventAggregator ea;
+        public Login(IEventAggregator ea)
         {
-            InitializeComponent(); 
+            InitializeComponent();
+            this.ea = ea;
+            ea.GetEvent<MessageSentEvent>().Subscribe(MessageReceived);
         }
 
+        private void MessageReceived(string message)
+        {
+            if (message == "Logout")
+            {
+                txtPassword.Password = "";
+            }
+        }
 
         private void textUsername_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -34,7 +43,7 @@ namespace Auth.Views
             {
                 textUsername.Visibility = Visibility.Visible;
             }
-            
+
         }
 
 
@@ -56,11 +65,11 @@ namespace Auth.Views
                 textPassword.Visibility = Visibility.Visible;
             }
             if (this.DataContext != null)
-            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
+            {
+                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
+            }
+
 
         }
-
-        
-
     }
 }

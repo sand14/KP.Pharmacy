@@ -29,6 +29,7 @@
     <ProjectReference Include="..\Auth\KP.WPF.Auth.csproj" />
     <ProjectReference Include="..\KP.WPF.HomeModule\KP.WPF.HomeModule.csproj" />
     <ProjectReference Include="..\KP.WPF.Products\KP.WPF.Products.csproj" />
+    <ProjectReference Include="..\KP.WPF.Users\KP.WPF.Users.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Theme\MenuButtonTheme.xaml">

@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              xmlns:prism="http://prismlibrary.com/" xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
-             Height="700" Width="1000"
+             Height="660" Width="1000"
              HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
              prism:ViewModelLocator.AutoWireViewModel="True" Background="Transparent" >
@@ -33,10 +33,12 @@
 
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Products" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="ProductsView"/>
-                <RadioButton Content="Users" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" IsEnabled="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <RadioButton Content="Statistics" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton Content="Users" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="UsersView" IsEnabled="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <RadioButton Content="Logout" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Margin="0,370,0,0" Command="{Binding LogoutCommand}"/>
             </StackPanel>
-            <ContentControl prism:RegionManager.RegionName="ViewRegion" Grid.Row="1" Grid.Column="1" Margin="10"/>
+            <TextBlock Foreground="Black" Text="Select an item from the left side menu" FontSize="30" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ContentControl prism:RegionManager.RegionName="ViewRegion" Grid.RowSpan="2" Grid.Column="1" Margin="0,0,15,0"/>
         </Grid>
     </Border>
     

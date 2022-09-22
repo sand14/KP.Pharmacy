@@ -4,6 +4,7 @@ using KP.Core.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Joins;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +52,19 @@ namespace KP.Services.User
 
         public UserModel UpdateUser(UserModel User)
         {
-            throw new NotImplementedException();
+            if (User == null) return null;
+            var databaseEntity = userRepository.TableNoTracking.FirstOrDefault(s => s.UserId == User.UserId);
+            if (databaseEntity == null) return null;
+            if (!User.Password.StartsWith("$2a$11$"))
+            {
+                var decodedpassword = User.Password;
+                User.Password = PasswordHashing(decodedpassword);
+            }
+
+            
+            userRepository.Update(User.ToEntity());
+            
+            return GetUserById(User.UserId);
         }
 
         public UserModel GetUserByUsername(string Name)

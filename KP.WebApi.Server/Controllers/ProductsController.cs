@@ -61,9 +61,9 @@ namespace KP.Web.Api.Controllers
             }
         }
 
-        [Route("/api/Products")]
+        [Route("/api/Products/{productId}")]
         [HttpPut]
-        public ProductModel UpdateProduct([FromBody] ProductModel product)
+        public ProductModel UpdateProduct(Guid productId, [FromBody] ProductModel product)
         {
             try
             {

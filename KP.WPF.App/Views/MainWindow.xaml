@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="700" Width="1000" WindowStartupLocation="CenterScreen" >
-    
+        Title="{Binding Title}" Height="700" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+
     <DockPanel LastChildFill="True">
-        <ContentControl prism:RegionManager.RegionName="HomeRegion"  />
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" Visibility="{Binding LoginVisibilty,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+        <ContentControl prism:RegionManager.RegionName="ContentRegion" x:Name="ContentControl"/>
         
     </DockPanel>
 </Window>
