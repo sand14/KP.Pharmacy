@@ -7,6 +7,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
+using Auth;
+using Prism.Events;
 using DelegateCommand = Prism.Commands.DelegateCommand;
 
 namespace KP.WPF.Users.ViewModels
@@ -33,6 +35,7 @@ namespace KP.WPF.Users.ViewModels
             get { return selectedUser; }
             set { selectedUser = value; }
         }
+
 
         public UsersViewModel(UserRestService userRestService)
         {
@@ -82,7 +85,7 @@ namespace KP.WPF.Users.ViewModels
 
 
 
-            await GetUsers();
+            GetUsers();
         }
 
     }

@@ -10,6 +10,9 @@
              HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
              prism:ViewModelLocator.AutoWireViewModel="True" Background="Transparent" >
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
     <Border CornerRadius="10 0 0 10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -19,9 +22,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition />
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
-            <Border Grid.RowSpan="2"  >
+            <Border Grid.RowSpan="3"  >
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="#21428f" Offset="0"/>
@@ -29,16 +33,33 @@
                     </LinearGradientBrush>
                 </Border.Background>
             </Border>
-            <TextBlock Text="Pharmacy" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontSize="22" Margin="20,0,0,0"/>
+            <RadioButton Content="Pharmacy" x:Name="HomeButton" Foreground="White" FontSize="22" Height="50" Style="{StaticResource MenuButtonTheme}" Command="{Binding HomeCommand}" Checked="HomeButton_OnChecked"/>
 
             <StackPanel Grid.Row="1">
-                <RadioButton Content="Products" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="ProductsView"/>
-                <RadioButton Content="Stocks" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="StocksView"/>
-                <RadioButton Content="Users" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="UsersView" IsEnabled="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <RadioButton x:Name="LogoutButton" Content="Logout" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Margin="0,370,0,0" Command="{Binding LogoutCommand}" Checked="ToggleButton_OnChecked"/>
+                <RadioButton x:Name="ProductsButton" Content="Products" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="ProductsView"/>
+                <RadioButton x:Name="StocksButton"  Content="Stocks" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="StocksView"/>
+                <RadioButton x:Name="UsersButton"  Content="Users" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="UsersView" Visibility="{Binding Path=IsEnabled, Converter={StaticResource BoolToVis}}"/>
             </StackPanel>
-            <TextBlock Foreground="Black" Text="Select an item from the left side menu" FontSize="30" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <ContentControl prism:RegionManager.RegionName="ViewRegion" Grid.RowSpan="2" Grid.Column="1" Margin="0,0,15,0"/>
+            <RadioButton Grid.Row="2" x:Name="LogoutButton" Content="Logout" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding LogoutCommand}" Checked="ToggleButton_OnChecked"/>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="500"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Foreground="Black" Text="Number of products:" FontSize="30" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBlock Foreground="Black" Text="{Binding NumberOfProducts}" Margin="10,0,0,0" Grid.Row="0" Grid.Column="1"  FontSize="30"   VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Foreground="Black" Text="Number of low stock products:" FontSize="30" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Foreground="Black" Text="{Binding NumberOfLowStockProducts}" Margin="10,0,0,0" Grid.Row="1" Grid.Column="1"  FontSize="30"   VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Foreground="Black" Text="Number of users:" FontSize="30" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Visibility="{Binding Path=IsEnabled, Converter={StaticResource BoolToVis}}"/>
+                <TextBlock Foreground="Black" Text="{Binding NumberOfUsers}" Margin="10,0,0,0" Grid.Row="2" Grid.Column="1"  FontSize="30"   VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding Path=IsEnabled, Converter={StaticResource BoolToVis}}"/>
+            </Grid>
+
+            <ContentControl prism:RegionManager.RegionName="ViewRegion" Grid.RowSpan="3" Grid.Column="1" Margin="0,0,15,0"/>
         </Grid>
     </Border>
     

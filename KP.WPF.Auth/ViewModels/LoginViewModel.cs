@@ -36,18 +36,13 @@ namespace KP.WPF.Auth.ViewModels
             set { SetProperty(ref password, value); }
         }
 
-        private bool success;
 
         private Visibility _MessageVisibilty;
         public Visibility MessageVisibilty { get { return _MessageVisibilty; } set { SetProperty(ref _MessageVisibilty, value); } }
 
 
 
-        public bool Success
-        {
-            get { return success; }
-            set { success = value; }
-        }
+      
 
         public DelegateCommand LoginCommand { get; set; }
 
@@ -75,12 +70,12 @@ namespace KP.WPF.Auth.ViewModels
 
         private async void OnLoginAsync()
         {
-            success = await userRestService.Login(Username, Password);
-            if (success)
+            var LoginUser = await userRestService.Login(Username, Password);
+            if (LoginUser != null)
             {
-                UserModel user = await userRestService.GetUser(Username);
+                
 
-                if (user.IsAdmin)
+                if (LoginUser.IsAdmin)
                     ea.GetEvent<MessageSentEvent>().Publish("Admin");
                 else
                     ea.GetEvent<MessageSentEvent>().Publish("NonAdmin");

@@ -7,21 +7,25 @@ using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using Auth;
+using Prism.Events;
 
 namespace KP.WPF.App.APIClient.RestServices
 {
     public class UserRestService : RestServiceBase
     {
-        public UserRestService(IClientApplicationConfiguration configuration) : base(configuration)
+        private IEventAggregator ea;
+        public UserRestService(IClientApplicationConfiguration configuration, IEventAggregator ea) : base(configuration)
         {
             client = GetClient();
+            this.ea = ea;
         }
 
         HttpClient client;
 
         static Guid loggedGuid;
 
-        public async Task<bool> Login(string username, string password)
+        public async Task<UserModel> Login(string username, string password)
         {
 
 
@@ -30,13 +34,13 @@ namespace KP.WPF.App.APIClient.RestServices
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(string.Format("{0}/api/Login/", serverAddress), content);
             var result = await response.Content.ReadAsStringAsync();
-            if (JsonConvert.DeserializeObject<bool>(result) && !client.DefaultRequestHeaders.Contains("Authorization"))
+            if ((JsonConvert.DeserializeObject<UserModel>(result) != null)  && (!client.DefaultRequestHeaders.Contains("Authorization")))
             {
                 client.DefaultRequestHeaders.Add("Authorization", $"basic {encoded}");
-                UserModel loggedUser = await GetUser(username);
+                UserModel loggedUser = JsonConvert.DeserializeObject<UserModel>(result);
                 loggedGuid = loggedUser.UserId;
             }
-            return JsonConvert.DeserializeObject<bool>(result);
+            return JsonConvert.DeserializeObject<UserModel>(result);
 
         }
 
@@ -107,6 +111,11 @@ namespace KP.WPF.App.APIClient.RestServices
                         Convert.ToBase64String(Encoding.GetEncoding(0).GetBytes($"{user.Username}:{user.Password}"));
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Add("Authorization", $"basic {encoded}");
+                }
+
+                if (user.IsAdmin == false)
+                {
+                    ea.GetEvent<MessageSentEvent>().Publish("AdminDisabled");
                 }
             }
             return payload;

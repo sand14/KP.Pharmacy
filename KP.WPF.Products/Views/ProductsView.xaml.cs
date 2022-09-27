@@ -18,7 +18,6 @@ namespace KP.WPF.Products.Views
             e.NewObject = new ProductModel()
             {
                 Stock = new StockModel(),
-
             };
 
         }

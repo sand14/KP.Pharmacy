@@ -29,10 +29,6 @@ namespace KP.WPF.App.ViewModels
             if (message == "Admin" || message == "NonAdmin")
             {
                 _regionManager.RequestNavigate("ContentRegion", "Home");
-                //RegionManager.Regions["ContentRegion"].RemoveAll();
-                //RegionManager.Regions["ContentRegion"].Add("Home");
-                //LoginVisibility = Visibility.Hidden;
-                //HomeVisibility = Visibility.Visible;
             }
             if (message == "Logout")
             {

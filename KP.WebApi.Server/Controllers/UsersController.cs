@@ -21,7 +21,7 @@ namespace KP.Web.Api.Controllers
         [AllowAnonymous]
         [Route("/api/Login")]
         [HttpPost]
-        public bool Login([FromBody] string base64String)
+        public UserModel Login([FromBody] string base64String)
         {
             var bytes = Convert.FromBase64String(base64String);
             string credentials = Encoding.UTF8.GetString(bytes);
@@ -34,16 +34,17 @@ namespace KP.Web.Api.Controllers
                 var user = userService.GetUserByUsername(username);
                 if (user == null)
                 {
-                    return false;
+                    return null;
                 }
 
 
                 if (!userService.PasswordVerify(user.Username, password))
                 {
-                    return false;
+                    return null;
                 }
+                return user;
             }
-            return true;
+            return null;
         }
 
         [Route("/api/Users")]
