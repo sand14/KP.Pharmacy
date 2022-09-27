@@ -34,13 +34,13 @@ namespace KP.Services.User
 
         public UserModel GetUserById(Guid UserId)
         {
-            var user = userRepository.Table.FirstOrDefault(x => x.UserId == UserId);
+            var user = userRepository.TableNoTracking.FirstOrDefault(x => x.UserId == UserId);
             return user.ToModel();
         }
 
         public IEnumerable<UserModel> GetUsers()
         {
-            var users = userRepository.Table.Select(x => x.ToModel()).ToList();
+            var users = userRepository.TableNoTracking.Select(x => x.ToModel()).ToList();
             return users;
         }
 
@@ -55,15 +55,16 @@ namespace KP.Services.User
                 User.Password = PasswordHashing(decodedpassword);
             }
 
+            var userentity = User.ToEntity();
 
-            userRepository.Update(User.ToEntity());
+            userRepository.Update(userentity);
 
             return GetUserById(User.UserId);
         }
 
         public UserModel GetUserByUsername(string Name)
         {
-            var user = userRepository.Table.FirstOrDefault(x => x.Username == Name);
+            var user = userRepository.TableNoTracking.FirstOrDefault(x => x.Username == Name);
             return user.ToModel();
         }
 
@@ -75,7 +76,7 @@ namespace KP.Services.User
 
         public bool PasswordVerify(string username, string password)
         {
-            var userEntity = userRepository.Table.FirstOrDefault(x => x.Username == username);
+            var userEntity = userRepository.TableNoTracking.FirstOrDefault(x => x.Username == username);
             string passwordHash = userEntity.Password;
             return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }

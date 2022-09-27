@@ -1,27 +1,23 @@
-﻿using DevExpress.Mvvm;
+﻿using Prism.Mvvm;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 using DevExpress.Mvvm.Xpf;
 using KP.WPF.APIModule.APIClient.RestServices;
 using KP.WPF.Core.Models;
-using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Prism.Regions;
 using DelegateCommand = Prism.Commands.DelegateCommand;
 
-namespace KP.WPF.Products.ViewModels
+namespace KP.WPF.Stocks.ViewModels
 {
-    public class ProductsViewModel : ViewModelBase, INavigationAware
+    public class StocksViewModel : ViewModelBase, INavigationAware
     {
-        private readonly ProductRestService productRestService;
-
-
-
-
-        public DelegateCommand DeleteProductCommand { get; private set; }
-
-
         private ObservableCollection<ProductModel> products;
         public ObservableCollection<ProductModel> Products
         {
@@ -37,34 +33,26 @@ namespace KP.WPF.Products.ViewModels
         }
 
 
+        private readonly ProductRestService productRestService;
 
-        public ProductsViewModel(ProductRestService productRestService)
+        public DelegateCommand DeleteProductCommand { get; private set; }
+
+        public StocksViewModel(ProductRestService productRestService)
         {
-
             DeleteProductCommand = new DelegateCommand(DeleteProduct);
 
-            this.productRestService = productRestService;
+            this.productRestService = productRestService;   
+            //Task.Run(() => this.Initialize()).Wait();
         }
 
         private async Task GetProducts()
         {
             Products = new ObservableCollection<ProductModel>(await productRestService.GetAllProductsAsync());
         }
-
-        public async void OnNavigatedTo(NavigationContext navigationContext)
-        {
-            await GetProducts();
-        }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext)
-        {
-            return false;
-        }
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-
-        }
+        //private async Task Initialize()
+        //{
+        //    await GetProducts();
+        //}
 
         private async void DeleteProduct()
         {
@@ -83,19 +71,24 @@ namespace KP.WPF.Products.ViewModels
         public async void ValidateRow(RowValidationArgs args)
         {
 
-            ProductModel product = (ProductModel)args.Item;
-            if (product.ProductId == Guid.Empty)
-            {
-                await productRestService.CreateProductAsync(product);
-            }
-            else
-            {
-                await productRestService.UpdateProductAsync(product.ProductId, product);
-            }
-
-
-
+            ProductModel product = (ProductModel)args.Item; 
+            await productRestService.UpdateProductAsync(product.ProductId, product);
             await GetProducts();
+        }
+
+        public async void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            await GetProducts();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return false;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+            
         }
     }
 }

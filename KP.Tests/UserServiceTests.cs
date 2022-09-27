@@ -17,9 +17,9 @@ namespace KP.Tests
             return new(userRepository);
         }
 
-        private User CreateUserModel(string username, string password)
+        private UserModel CreateUserModel(string username, string password)
         {
-            User user = new()
+            UserModel user = new()
             {
                 Username = username,
                 Password = password
@@ -52,10 +52,10 @@ namespace KP.Tests
             Guid createdUserId = Guid.Empty;
             try
             {
-                User user = CreateUserModel("username1", "password1");
+                UserModel user = CreateUserModel("username1", "password1");
 
                 //act
-                UserModel createdUser = service.CreateUser(user.ToModel());
+                UserModel createdUser = service.CreateUser(user);
                 createdUserId = createdUser.UserId;
 
                 //assert
@@ -69,9 +69,26 @@ namespace KP.Tests
             }
             finally
             {
-                //service.DeleteUser(createdUserId);
+                service.DeleteUser(createdUserId);
             }
-
         }
+
+        [Test]
+        public void DeleteUserTest()
+        {
+            //arrange
+            UserService service = GetService();
+            UserModel user = CreateUserModel("TestUsername","TestPassword");
+            UserModel createdUser = service.CreateUser(user);
+
+            //act
+            service.DeleteUser(createdUser.UserId);
+
+            //assert
+            var deletedUser = service.GetUserById(createdUser.UserId);
+            Assert.That(deletedUser == null);
+        }
+
+
     }
 }

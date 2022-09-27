@@ -10,12 +10,17 @@
              d:DesignHeight="700" d:DesignWidth="800"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
-        <dxg:GridControl SelectionMode="Row" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
+        <dxg:GridControl SelectionMode="None" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
+            <dxg:GridControl.SortInfo>
+                <dxg:GridSortInfo FieldName="Name" SortOrder="Ascending"/>
+            </dxg:GridControl.SortInfo>
             <dxg:GridControl.InputBindings>
                 <KeyBinding Command="{Binding DeleteProductCommand}" Key="Delete"/>
             </dxg:GridControl.InputBindings>
             <dxg:GridControl.View>
-                <dxg:TableView HighlightItemOnHover="True" AutoWidth="True" NewItemRowPosition="Bottom" AddingNewRow="TableView_AddingNewRow" EditFormColumnCount="2" EditFormShowMode="Inline"  ValidateRowCommand="{Binding ValidateRowCommand}"/>
+                <dxg:TableView HighlightItemOnHover="True" AutoWidth="True" NewItemRowPosition="Bottom" AddingNewRow="TableView_AddingNewRow" EditFormColumnCount="2" EditFormShowMode="Inline"  ValidateRowCommand="{Binding ValidateRowCommand}">
+                    
+                </dxg:TableView>
             </dxg:GridControl.View>
             <dxg:GridColumn FieldName="Name" EditFormCaption="Product name:" EditFormColumnSpan="2"  IsSmart="True"/>
             <dxg:GridColumn FieldName="Producer" IsSmart="True"/>

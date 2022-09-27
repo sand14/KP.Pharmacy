@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace KP.WPF.HomeModule.Views
 {
@@ -13,5 +14,9 @@ namespace KP.WPF.HomeModule.Views
         }
 
 
+        private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
+        {
+            LogoutButton.IsChecked = false;
+        }
     }
 }

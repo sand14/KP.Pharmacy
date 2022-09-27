@@ -33,9 +33,9 @@
 
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Products" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="ProductsView"/>
-                <RadioButton Content="Statistics" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+                <RadioButton Content="Stocks" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="StocksView"/>
                 <RadioButton Content="Users" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding NavigateCommand}" CommandParameter="UsersView" IsEnabled="{Binding IsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <RadioButton Content="Logout" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Margin="0,370,0,0" Command="{Binding LogoutCommand}"/>
+                <RadioButton x:Name="LogoutButton" Content="Logout" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Margin="0,370,0,0" Command="{Binding LogoutCommand}" Checked="ToggleButton_OnChecked"/>
             </StackPanel>
             <TextBlock Foreground="Black" Text="Select an item from the left side menu" FontSize="30" Grid.Column="1" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <ContentControl prism:RegionManager.RegionName="ViewRegion" Grid.RowSpan="2" Grid.Column="1" Margin="0,0,15,0"/>

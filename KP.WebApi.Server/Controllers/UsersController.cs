@@ -1,8 +1,10 @@
-﻿using KP.Common.Model.Models;
+﻿using System.Security.Claims;
+using KP.Common.Model.Models;
 using KP.Services.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
 
 namespace KP.Web.Api.Controllers
 {
@@ -50,6 +52,15 @@ namespace KP.Web.Api.Controllers
         {
             try
             {
+                var loggedusername = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+                var loggeduser = userService.GetUserByUsername(loggedusername);
+                if (!(bool)loggeduser.isAdmin)
+                {
+                    return null;
+                }
+
+
+
                 var users = userService.GetUsers();
 
                 return users;
@@ -82,6 +93,13 @@ namespace KP.Web.Api.Controllers
         {
             try
             {
+                var loggedusername = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+                var loggeduser = userService.GetUserByUsername(loggedusername);
+                if (!(bool)loggeduser.isAdmin)
+                {
+                    return null;
+                }
+
                 var user = userService.GetUserByUsername(username);
 
                 return user;
@@ -98,6 +116,13 @@ namespace KP.Web.Api.Controllers
         {
             try
             {
+                var loggedusername = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+                var loggeduser = userService.GetUserByUsername(loggedusername);
+                if (!(bool)loggeduser.isAdmin)
+                {
+                    return;
+                }
+
                 userService.DeleteUser(userId);
 
             }
@@ -113,7 +138,13 @@ namespace KP.Web.Api.Controllers
         {
             try
             {
-                //var studentModel = JsonSerializer.Deserialize<StudentModel>(student);
+                var loggedusername = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+                var loggeduser = userService.GetUserByUsername(loggedusername);
+                if (!(bool)loggeduser.isAdmin)
+                {
+                    return null;
+                }
+
                 UserModel createdUser = userService.CreateUser(user);
                 return createdUser;
             }
@@ -123,12 +154,20 @@ namespace KP.Web.Api.Controllers
             }
         }
 
-        [Route("/api/Users/{userId}")]
+        [Route("/api/Users/")]
         [HttpPut]
-        public UserModel UpdateUser(Guid userId, [FromBody] UserModel user)
+        public UserModel UpdateUser([FromBody] UserModel user)
         {
             try
             {
+                var loggedusername = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
+                var loggeduser = userService.GetUserByUsername(loggedusername);
+                if (!(bool)loggeduser.isAdmin)
+                {
+                    return null;
+                }
+
+
                 UserModel updateUser = userService.UpdateUser(user);
                 return updateUser;
             }

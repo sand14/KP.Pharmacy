@@ -12,6 +12,7 @@ using Prism.Regions;
 using Prism.Unity;
 using System.Windows;
 using KP.WPF.Auth.Views;
+using KP.WPF.Stocks;
 
 namespace KP.WPF.App
 {
@@ -51,6 +52,7 @@ namespace KP.WPF.App
             moduleCatalog.AddModule<APIModuleModule>();
             moduleCatalog.AddModule<ProductsModule>();
             moduleCatalog.AddModule<UsersModule>();
+            moduleCatalog.AddModule<StocksModule>();
 
         }
 

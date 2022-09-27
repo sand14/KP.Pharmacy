@@ -39,7 +39,7 @@ namespace KP.Web.Api
                 string username = array[0];
                 string password = array[1];
 
-                var user = usersRepository.Table.FirstOrDefault(x => x.Username == username);
+                var user = usersRepository.TableNoTracking.FirstOrDefault(x => x.Username == username);
                 if (user == null)
                 {
                     return AuthenticateResult.Fail("UnAuthorized");

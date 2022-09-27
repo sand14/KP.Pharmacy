@@ -77,7 +77,7 @@ namespace KP.WPF.Users.ViewModels
             }
             else
             {
-                await userRestService.UpdateUserAsync(user.UserId, user);
+                await userRestService.UpdateUserAsync(user);
             }
 
 

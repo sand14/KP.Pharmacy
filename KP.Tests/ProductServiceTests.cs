@@ -97,7 +97,7 @@ namespace KP.Tests
             }
             finally
             {
-                //service.DeleteProduct(createdProductId);
+                service.DeleteProduct(createdProductId);
             }
         }
 
@@ -113,8 +113,8 @@ namespace KP.Tests
             service.DeleteProduct(createdProduct.ProductId);
 
             //assert
-            var deletedStudent = service.GetProductById(createdProduct.ProductId);
-            Assert.That(deletedStudent == null);
+            var deletedProduct = service.GetProductById(createdProduct.ProductId);
+            Assert.That(deletedProduct == null);
         }
     }
 }
