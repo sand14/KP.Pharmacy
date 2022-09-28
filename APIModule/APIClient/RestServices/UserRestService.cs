@@ -42,6 +42,7 @@ namespace KP.WPF.App.APIClient.RestServices
             }
             return JsonConvert.DeserializeObject<UserModel>(result);
 
+
         }
 
         public void Logout()
