@@ -25,8 +25,8 @@ namespace KP.WPF.Core.Models
             set { SetProperty(ref description, value); }
         }
 
-        private float price;
-        public float Price
+        private double price;
+        public double Price
         {
             get { return price; }
             set { SetProperty(ref price, value); }

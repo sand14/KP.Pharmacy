@@ -86,11 +86,17 @@ namespace KP.WPF.Products.ViewModels
             ProductModel product = (ProductModel)args.Item;
             if (product.ProductId == Guid.Empty)
             {
-                await productRestService.CreateProductAsync(product);
+                ProductModel createdProduct = await productRestService.CreateProductAsync(product);
+                if (createdProduct == null || createdProduct.ProductId == Guid.Empty)
+                {
+                    MessageBox.Show("Error adding product, Name and Producer should be valid");
+                }
             }
             else
             {
-                await productRestService.UpdateProductAsync(product.ProductId, product);
+                ProductModel updatedProduct = await productRestService.UpdateProductAsync(product);
+                if (updatedProduct == null || updatedProduct.ProductId == Guid.Empty)
+                    MessageBox.Show("Error updating product, Name and Producer should be valid");
             }
 
 

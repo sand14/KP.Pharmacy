@@ -44,9 +44,9 @@ namespace KP.WPF.APIModule.APIClient.RestServices
             await Task.CompletedTask;
         }
 
-        public async Task<ProductModel> UpdateProductAsync(Guid productId, ProductModel product)
+        public async Task<ProductModel> UpdateProductAsync(ProductModel product)
         {
-            var request = await PrepareRequestMessageAsync(HttpMethod.Put, string.Format("{0}/api/Products/{1}", serverAddress, productId));
+            var request = await PrepareRequestMessageAsync(HttpMethod.Put, string.Format("{0}/api/Products/", serverAddress));
             var jsonPayload = SerializeObject(product);
             request.Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);

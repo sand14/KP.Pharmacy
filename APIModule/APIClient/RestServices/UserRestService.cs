@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Auth;
 using Prism.Events;
 
@@ -37,8 +38,7 @@ namespace KP.WPF.App.APIClient.RestServices
             if ((JsonConvert.DeserializeObject<UserModel>(result) != null)  && (!client.DefaultRequestHeaders.Contains("Authorization")))
             {
                 client.DefaultRequestHeaders.Add("Authorization", $"basic {encoded}");
-                UserModel loggedUser = JsonConvert.DeserializeObject<UserModel>(result);
-                loggedGuid = loggedUser.UserId;
+                loggedGuid = JsonConvert.DeserializeObject<UserModel>(result).UserId;
             }
             return JsonConvert.DeserializeObject<UserModel>(result);
 
@@ -77,6 +77,11 @@ namespace KP.WPF.App.APIClient.RestServices
 
         public async Task DeleteUserAsync(Guid userId)
         {
+            if (loggedGuid == userId)
+            {
+                MessageBox.Show("You cannot delete you own account");
+                return;
+            }
             var request = await PrepareRequestMessageAsync(HttpMethod.Delete, string.Format("{0}/api/Users/{1}", serverAddress, userId));
             var response = await client.SendAsync(request);
             await Task.CompletedTask;

@@ -60,12 +60,14 @@ namespace KP.Web.Api.Controllers
             }
         }
 
-        [Route("/api/Products/{productId}")]
+        [Route("/api/Products/")]
         [HttpPut]
-        public ProductModel UpdateProduct(Guid productId, [FromBody] ProductModel product)
+        public ProductModel UpdateProduct([FromBody] ProductModel product)
         {
             try
             {
+                if (product.Producer == null)
+                    return null;
                 ProductModel updateProduct = productService.UpdateProduct(product);
                 return updateProduct;
             }
@@ -81,6 +83,8 @@ namespace KP.Web.Api.Controllers
         {
             try
             {
+                if (product.Producer == null)
+                    return null;
                 //var studentModel = JsonSerializer.Deserialize<StudentModel>(student);
                 ProductModel createdProduct = productService.CreateProduct(product);
                 return createdProduct;

@@ -72,7 +72,7 @@ namespace KP.WPF.Stocks.ViewModels
         {
 
             ProductModel product = (ProductModel)args.Item; 
-            await productRestService.UpdateProductAsync(product.ProductId, product);
+            await productRestService.UpdateProductAsync(product);
             await GetProducts();
         }
 

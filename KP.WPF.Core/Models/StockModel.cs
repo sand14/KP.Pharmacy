@@ -18,8 +18,8 @@ namespace KP.WPF.Core.Models
             set { SetProperty(ref productId, value); }
         }
 
-        private float quantity;
-        public float Quantity
+        private int quantity;
+        public int Quantity
         {
             get { return quantity; }
             set { SetProperty(ref quantity, value); }
