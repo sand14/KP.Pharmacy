@@ -31,15 +31,9 @@ namespace KP.WPF.App
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
-            //containerRegistry.RegisterForNavigation<Login,LoginViewModel>();
-            ////containerRegistry.Register<UserRestService>();
-            //containerRegistry.RegisterForNavigation<Home, HomeViewModel>();
             containerRegistry.Register<IClientApplicationConfiguration, ApplicationConfiguration>();
-            containerRegistry.RegisterForNavigation<Login>("Login");
-            containerRegistry.RegisterForNavigation<Home>("Home");
-
-
+            //containerRegistry.RegisterForNavigation<Login>("Login");
+            //containerRegistry.RegisterForNavigation<Home>("Home");
         }
 
 

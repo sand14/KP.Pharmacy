@@ -8,7 +8,7 @@ namespace KP.WPF.App.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly IRegionManager _regionManager;
-        private string _title = "Prism Application";
+        private string _title = "Kronsoft Pharmacy";
         public string Title
         {
             get { return _title; }
