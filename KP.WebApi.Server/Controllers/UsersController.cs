@@ -145,6 +145,11 @@ namespace KP.Web.Api.Controllers
                 {
                     return null;
                 }
+                var addedusername = user.Username;
+                if (userService.GetUserByUsername(addedusername) != null)
+                {
+                    return null;
+                }
 
                 UserModel createdUser = userService.CreateUser(user);
                 return createdUser;

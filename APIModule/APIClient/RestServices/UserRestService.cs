@@ -35,14 +35,12 @@ namespace KP.WPF.App.APIClient.RestServices
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync(string.Format("{0}/api/Login/", serverAddress), content);
             var result = await response.Content.ReadAsStringAsync();
-            if ((JsonConvert.DeserializeObject<UserModel>(result) != null)  && (!client.DefaultRequestHeaders.Contains("Authorization")))
+            if ((JsonConvert.DeserializeObject<UserModel>(result) != null) && (!client.DefaultRequestHeaders.Contains("Authorization")))
             {
                 client.DefaultRequestHeaders.Add("Authorization", $"basic {encoded}");
                 loggedGuid = JsonConvert.DeserializeObject<UserModel>(result).UserId;
             }
             return JsonConvert.DeserializeObject<UserModel>(result);
-
-
         }
 
         public void Logout()

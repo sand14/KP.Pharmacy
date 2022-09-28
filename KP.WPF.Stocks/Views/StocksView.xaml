@@ -10,9 +10,6 @@
              d:DesignHeight="300" d:DesignWidth="300"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
-        <TextBlock Text="{Binding Message}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
         <dxg:GridControl SelectionMode="None" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
             <dxg:GridControl.SortInfo>
                 <dxg:GridSortInfo FieldName="Stock.Quantity" SortOrder="Ascending"/>
